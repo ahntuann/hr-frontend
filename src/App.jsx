@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Fragment } from "react"; // Dùng Fragment để bọc nếu không có layout
 import routes from "./routes"; // Import mảng cấu hình bên trên
+import "./App.css"; // Import CSS chung nếu cần
 
 function App() {
   return (
