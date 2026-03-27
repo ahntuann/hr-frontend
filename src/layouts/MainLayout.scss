@@ -1,0 +1,165 @@
+// Variables
+$sidebar-width: 280px;
+$header-height: 70px;
+$primary-blue: #0284c7;
+$bg-light: #f9fafb;
+$border-color: #e5e7eb;
+$text-main: #1f2937;
+$text-muted: #6b7280;
+
+.main-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: $bg-light;
+  font-family: "Inter", sans-serif; // Khuyên dùng font Inter cho app HR
+
+  // --- SIDEBAR ---
+  .sidebar {
+    width: $sidebar-width;
+    background-color: #ffffff;
+    border-right: 1px solid $border-color;
+    display: flex;
+    flex-direction: column;
+    position: fixed; // Cố định sidebar khi scroll nội dung
+    height: 100vh;
+    z-index: 50;
+
+    .logo {
+      padding: 32px 24px;
+      font-size: 24px;
+      font-weight: 800;
+      color: $primary-blue;
+      text-align: center;
+      letter-spacing: -0.5px;
+      margin: 0;
+    }
+
+    nav {
+      flex: 1;
+      padding: 0 16px;
+      overflow-y: auto;
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+          margin-bottom: 4px;
+
+          .menu-item {
+            display: block;
+            padding: 12px 16px;
+            color: $text-main;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+
+            &:hover {
+              background-color: #f3f4f6;
+              color: $primary-blue;
+            }
+
+            &.active {
+              background-color: #f0f9ff;
+              color: $primary-blue;
+              font-weight: 600;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // --- MAIN CONTENT AREA ---
+  .content-wrapper {
+    flex: 1;
+    margin-left: $sidebar-width; // Chừa chỗ cho sidebar cố định
+    display: flex;
+    flex-direction: column;
+    min-width: 0; // Tránh lỗi overflow của flex child
+
+    .main-header {
+      height: $header-height;
+      background-color: #ffffff;
+      border-bottom: 1px solid $border-color;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 0 32px;
+      position: sticky;
+      top: 0;
+      z-index: 40;
+
+      .user-info {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+
+        .role-badges {
+          display: flex;
+          gap: 6px;
+
+          .badge {
+            padding: 4px 10px;
+            background-color: #e0f2fe;
+            color: $primary-blue;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+          }
+        }
+
+        .user-name {
+          font-size: 14px;
+          font-weight: 600;
+          color: $text-main;
+        }
+
+        .avatar {
+          width: 40px;
+          height: 40px;
+          background-color: #e2e8f0;
+          color: $text-main;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: bold;
+          border: 2px solid #ffffff;
+          box-shadow: 0 0 0 1px $border-color;
+        }
+      }
+    }
+
+    .page-content {
+      padding: 32px;
+      flex: 1;
+      // Đây là nơi chứa nội dung của từng trang thông qua <Outlet />
+    }
+  }
+}
+
+// Responsive cho mobile (Optional)
+@media (max-width: 768px) {
+  .main-layout {
+    .sidebar {
+      width: 80px;
+      .logo,
+      .user-name {
+        display: none;
+      }
+      nav ul li .menu-item {
+        text-align: center;
+        font-size: 10px;
+        padding: 10px 5px;
+      }
+    }
+    .content-wrapper {
+      margin-left: 80px;
+    }
+  }
+}
