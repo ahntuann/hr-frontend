@@ -3,6 +3,8 @@ import Login from "../pages/Login/Login";
 import MainLayout from "../layouts/MainLayout";
 import Employees from "../pages/Employee/Employees";
 import EmployeeForm from "../pages/Employee/EmployeeForm";
+import UserManagement from "../pages/UserManagement/UserManagement";
+import ContractManagement from "../pages/Contract/ContractManagement";
 
 const routes = [
   {
@@ -34,6 +36,16 @@ const routes = [
   {
     path: "/employee-management/view/:id",
     component: () => <EmployeeForm mode="view" />,
+    layout: MainLayout,
+  },
+  {
+    path: "/contract-management",
+    component: ContractManagement,
+    layout: MainLayout,
+  },
+  {
+    path: "/user-management",
+    component: UserManagement,
     layout: MainLayout,
   },
 ];

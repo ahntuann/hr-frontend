@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import api from "../../services/api";
 import { ArrowLeft, Save, Edit3, Loader2 } from "lucide-react";
 import "./EmployeeForm.scss";
+import { getUserRoles } from "../../utils/authUtils";
 
 const EmployeeForm = ({ mode = "view" }) => {
   const { id } = useParams();
@@ -28,6 +29,16 @@ const EmployeeForm = ({ mode = "view" }) => {
     joinDate: new Date().toISOString().split("T")[0],
     status: "Active",
   });
+
+  const userRoles = getUserRoles();
+  const isManager =
+    userRoles.includes("Manager") &&
+    !userRoles.includes("Admin") &&
+    !userRoles.includes("Director");
+
+  const isReadOnly = mode === "view";
+
+  const isJobInfoDisabled = isReadOnly || (mode === "edit" && isManager);
 
   useEffect(() => {
     fetchDropdownData();
@@ -115,8 +126,6 @@ const EmployeeForm = ({ mode = "view" }) => {
         <Loader2 className="animate-spin" />
       </div>
     );
-
-  const isReadOnly = mode === "view";
 
   return (
     <div className="employee-form-container">
@@ -223,7 +232,7 @@ const EmployeeForm = ({ mode = "view" }) => {
                 name="departmentId"
                 value={formData.departmentId}
                 onChange={handleChange}
-                disabled={isReadOnly}
+                disabled={isJobInfoDisabled}
                 required
               >
                 <option value="">-- Chọn phòng ban --</option>
@@ -240,7 +249,7 @@ const EmployeeForm = ({ mode = "view" }) => {
                 name="positionId"
                 value={formData.positionId}
                 onChange={handleChange}
-                disabled={isReadOnly}
+                disabled={isJobInfoDisabled}
                 required
               >
                 <option value="">-- Chọn chức vụ --</option>
@@ -261,7 +270,7 @@ const EmployeeForm = ({ mode = "view" }) => {
                 name="joinDate"
                 value={formData.joinDate}
                 onChange={handleChange}
-                readOnly={isReadOnly || mode === "edit"}
+                readOnly={isJobInfoDisabled || mode === "edit"}
               />
             </div>
             <div className="form-group">
@@ -270,7 +279,7 @@ const EmployeeForm = ({ mode = "view" }) => {
                 name="status"
                 value={formData.status}
                 onChange={handleChange}
-                disabled={isReadOnly || mode === "add"}
+                disabled={isJobInfoDisabled || mode === "add"}
               >
                 <option value="Active">Đang làm việc</option>
                 <option value="Probation">Thử việc</option>

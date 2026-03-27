@@ -4,10 +4,18 @@ import { getUserRoles } from "../utils/authUtils";
 import "./MainLayout.scss";
 
 const MENU_ITEMS = [
-  { title: "Quản lý Tài khoản", path: "/accounts", roles: ["Admin"] },
-  { title: "Quản lý Hợp đồng", path: "/contracts", roles: ["Admin"] },
-  { title: "Chốt lương", path: "/payroll", roles: ["Admin"] },
-  { title: "Dashboard", path: "/", roles: ["Admin", "Director", "Manager"] },
+  {
+    title: "Quản lý Tài khoản",
+    path: "/user-management",
+    roles: ["Admin", "Director"],
+  },
+  {
+    title: "Quản lý Hợp đồng",
+    path: "/contract-management",
+    roles: ["Admin", "Director"],
+  },
+  { title: "Chốt lương", path: "/payroll", roles: ["Director"] },
+  { title: "Trang chủ", path: "/", roles: ["Admin", "Director"] },
   {
     title: "Quản lý Nhân sự",
     path: "/employee-management",
@@ -16,7 +24,7 @@ const MENU_ITEMS = [
   {
     title: "Phê duyệt Đơn từ",
     path: "/approvals",
-    roles: ["Admin", "Director", "Manager"],
+    roles: ["Director", "Manager"],
   },
   {
     title: "Trang cá nhân",
