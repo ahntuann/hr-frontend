@@ -10,7 +10,7 @@ const MENU_ITEMS = [
   { title: "Dashboard", path: "/", roles: ["Admin", "Director", "Manager"] },
   {
     title: "Quản lý Nhân sự",
-    path: "/employees",
+    path: "/employee-management",
     roles: ["Admin", "Director", "Manager"],
   },
   {

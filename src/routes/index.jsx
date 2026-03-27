@@ -1,0 +1,41 @@
+import Home from "../pages/Home";
+import Login from "../pages/Login/Login";
+import MainLayout from "../layouts/MainLayout";
+import Employees from "../pages/Employee/Employees";
+import EmployeeForm from "../pages/Employee/EmployeeForm";
+
+const routes = [
+  {
+    path: "/login",
+    component: Login,
+    layout: null,
+  },
+  {
+    path: "/",
+    component: Home,
+    layout: MainLayout,
+  },
+  {
+    path: "/employee-management",
+    component: Employees,
+    layout: MainLayout,
+  },
+  // --- ĐĂNG KÝ ROUTE CHO EMPLOYEE FORM ---
+  {
+    path: "/employee-management/add",
+    component: () => <EmployeeForm mode="add" />, // Truyền props trực tiếp ở đây
+    layout: MainLayout,
+  },
+  {
+    path: "/employee-management/edit/:id",
+    component: () => <EmployeeForm mode="edit" />,
+    layout: MainLayout,
+  },
+  {
+    path: "/employee-management/view/:id",
+    component: () => <EmployeeForm mode="view" />,
+    layout: MainLayout,
+  },
+];
+
+export default routes;
