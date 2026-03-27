@@ -2,14 +2,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import MainLayout from "./layouts/MainLayout";
 import "./App.css";
+import Login from "./pages/Login/Login";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<MainLayout />}>
-          {/* Đường dẫn mặc định (/) sẽ load trang Home vào vị trí <Outlet /> của Layout */}
-          <Route path="/" element={<Home />} />
+        <Route>
+          <Route path="/login" element={<Login />} />
         </Route>
       </Routes>
     </BrowserRouter>
