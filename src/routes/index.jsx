@@ -7,6 +7,7 @@ import UserManagement from "../pages/UserManagement/UserManagement";
 import ContractManagement from "../pages/Contract/ContractManagement";
 import MyProfile from "../pages/Profile/MyProfile";
 import Attendance from "../pages/Attendance/Attendance";
+import PayrollManagement from "../pages/Payroll/PayrollManagement";
 
 const routes = [
   {
@@ -58,6 +59,11 @@ const routes = [
   {
     path: "/attendance",
     component: Attendance,
+    layout: MainLayout,
+  },
+  {
+    path: "/payroll",
+    component: PayrollManagement,
     layout: MainLayout,
   },
 ];
