@@ -9,6 +9,7 @@ import MyProfile from "../pages/Profile/MyProfile";
 import Attendance from "../pages/Attendance/Attendance";
 import PayrollManagement from "../pages/Payroll/PayrollManagement";
 import ApprovalCenter from "../pages/Director/ApprovalCenter";
+import MyPayslip from "../pages/Payroll/MyPayslip";
 
 const routes = [
   {
@@ -72,6 +73,7 @@ const routes = [
     component: ApprovalCenter,
     layout: MainLayout,
   },
+  { path: "/my-payslip", component: MyPayslip, layout: MainLayout },
 ];
 
 export default routes;

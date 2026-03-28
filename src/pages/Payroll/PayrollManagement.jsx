@@ -4,6 +4,7 @@ import payrollService from "../../services/payrollService";
 export default function PayrollManagement() {
   const [month, setMonth] = useState(new Date().getMonth() + 1);
   const [year, setYear] = useState(new Date().getFullYear());
+  const [loading, setLoading] = useState(false);
 
   const [payrolls, setPayrolls] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -56,6 +57,32 @@ export default function PayrollManagement() {
   };
 
   const formatCurrency = (amount) => amount.toLocaleString("vi-VN") + " đ";
+
+  const handleConfirmPayroll = async () => {
+    if (
+      !window.confirm(
+        `Bạn có chắc chắn muốn CHỐT LƯƠNG tháng ${month}/${year}? Sau khi chốt, nhân viên sẽ nhìn thấy phiếu lương.`,
+      )
+    ) {
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const res = await payrollService.confirmPayroll(month, year);
+      if (res.success) {
+        alert(
+          "🎉 Chốt lương thành công! Phiếu lương đã được gửi tới toàn bộ nhân viên.",
+        );
+      } else {
+        alert(res.errorMessage);
+      }
+    } catch (error) {
+      alert("Lỗi kết nối hệ thống.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "20px" }}>
@@ -152,6 +179,22 @@ export default function PayrollManagement() {
           }}
         >
           {isCalculating ? "Đang xử lý..." : "⚡ Quét dữ liệu & Tính lương"}
+        </button>
+
+        <button
+          onClick={handleConfirmPayroll}
+          disabled={loading}
+          style={{
+            backgroundColor: loading ? "#94a3b8" : "#10b981",
+            color: "white",
+            padding: "10px 20px",
+            border: "none",
+            borderRadius: "6px",
+            cursor: loading ? "not-allowed" : "pointer",
+            fontWeight: "bold",
+          }}
+        >
+          {loading ? "Đang xử lý..." : "✅ Chốt & Công bố bảng lương"}
         </button>
       </div>
 
