@@ -5,6 +5,7 @@ import Employees from "../pages/Employee/Employees";
 import EmployeeForm from "../pages/Employee/EmployeeForm";
 import UserManagement from "../pages/UserManagement/UserManagement";
 import ContractManagement from "../pages/Contract/ContractManagement";
+import MyProfile from "../pages/Profile/MyProfile";
 
 const routes = [
   {
@@ -46,6 +47,11 @@ const routes = [
   {
     path: "/user-management",
     component: UserManagement,
+    layout: MainLayout,
+  },
+  {
+    path: "/profile",
+    component: MyProfile,
     layout: MainLayout,
   },
 ];
