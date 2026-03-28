@@ -5,6 +5,10 @@ import Employees from "../pages/Employee/Employees";
 import EmployeeForm from "../pages/Employee/EmployeeForm";
 import UserManagement from "../pages/UserManagement/UserManagement";
 import ContractManagement from "../pages/Contract/ContractManagement";
+import MyProfile from "../pages/Profile/MyProfile";
+import Attendance from "../pages/Attendance/Attendance";
+import PayrollManagement from "../pages/Payroll/PayrollManagement";
+import ApprovalCenter from "../pages/Director/ApprovalCenter";
 
 const routes = [
   {
@@ -46,6 +50,26 @@ const routes = [
   {
     path: "/user-management",
     component: UserManagement,
+    layout: MainLayout,
+  },
+  {
+    path: "/profile",
+    component: MyProfile,
+    layout: MainLayout,
+  },
+  {
+    path: "/attendance",
+    component: Attendance,
+    layout: MainLayout,
+  },
+  {
+    path: "/payroll",
+    component: PayrollManagement,
+    layout: MainLayout,
+  },
+  {
+    path: "/approvals",
+    component: ApprovalCenter,
     layout: MainLayout,
   },
 ];
