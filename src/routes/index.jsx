@@ -6,6 +6,7 @@ import EmployeeForm from "../pages/Employee/EmployeeForm";
 import UserManagement from "../pages/UserManagement/UserManagement";
 import ContractManagement from "../pages/Contract/ContractManagement";
 import MyProfile from "../pages/Profile/MyProfile";
+import Attendance from "../pages/Attendance/Attendance";
 
 const routes = [
   {
@@ -52,6 +53,11 @@ const routes = [
   {
     path: "/profile",
     component: MyProfile,
+    layout: MainLayout,
+  },
+  {
+    path: "/attendance",
+    component: Attendance,
     layout: MainLayout,
   },
 ];
