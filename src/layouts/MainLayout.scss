@@ -6,12 +6,13 @@ $bg-light: #f9fafb;
 $border-color: #e5e7eb;
 $text-main: #1f2937;
 $text-muted: #6b7280;
+$danger-red: #ef4444; // Thêm màu cho nút logout
 
 .main-layout {
   display: flex;
   min-height: 100vh;
   background-color: $bg-light;
-  font-family: "Inter", sans-serif; // Khuyên dùng font Inter cho app HR
+  font-family: "Inter", sans-serif;
 
   // --- SIDEBAR ---
   .sidebar {
@@ -20,7 +21,7 @@ $text-muted: #6b7280;
     border-right: 1px solid $border-color;
     display: flex;
     flex-direction: column;
-    position: fixed; // Cố định sidebar khi scroll nội dung
+    position: fixed;
     height: 100vh;
     z-index: 50;
 
@@ -71,15 +72,46 @@ $text-muted: #6b7280;
         }
       }
     }
+
+    // --- MỚI: FOOTER SIDEBAR (Nút Logout ở dưới cùng menu) ---
+    .sidebar-footer {
+      padding: 16px;
+      border-top: 1px solid $border-color;
+
+      .logout-btn-sidebar {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 16px;
+        background-color: transparent;
+        border: 1px solid transparent;
+        color: $text-muted;
+        border-radius: 10px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover {
+          background-color: #fef2f2; // Màu nền đỏ nhạt
+          color: $danger-red;
+        }
+
+        svg {
+          flex-shrink: 0;
+        }
+      }
+    }
   }
 
   // --- MAIN CONTENT AREA ---
   .content-wrapper {
     flex: 1;
-    margin-left: $sidebar-width; // Chừa chỗ cho sidebar cố định
+    margin-left: $sidebar-width;
     display: flex;
     flex-direction: column;
-    min-width: 0; // Tránh lỗi overflow của flex child
+    min-width: 0;
 
     .main-header {
       height: $header-height;
@@ -101,7 +133,6 @@ $text-muted: #6b7280;
         .role-badges {
           display: flex;
           gap: 6px;
-
           .badge {
             padding: 4px 10px;
             background-color: #e0f2fe;
@@ -132,25 +163,52 @@ $text-muted: #6b7280;
           border: 2px solid #ffffff;
           box-shadow: 0 0 0 1px $border-color;
         }
+
+        // --- MỚI: NÚT LOGOUT TRÊN HEADER ---
+        .btn-logout-header {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 36px;
+          height: 36px;
+          border-radius: 8px;
+          border: 1px solid $border-color;
+          background-color: #ffffff;
+          color: $text-muted;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          margin-left: 8px;
+
+          &:hover {
+            background-color: #fef2f2;
+            color: $danger-red;
+            border-color: #fee2e2;
+          }
+        }
       }
     }
 
     .page-content {
       padding: 32px;
       flex: 1;
-      // Đây là nơi chứa nội dung của từng trang thông qua <Outlet />
     }
   }
 }
 
-// Responsive cho mobile (Optional)
+// Responsive cho mobile
 @media (max-width: 768px) {
   .main-layout {
     .sidebar {
       width: 80px;
       .logo,
-      .user-name {
+      .user-name,
+      .sidebar-footer span {
+        // Ẩn chữ trong nút logout sidebar
         display: none;
+      }
+      .sidebar-footer .logout-btn-sidebar {
+        justify-content: center;
+        padding: 12px 0;
       }
       nav ul li .menu-item {
         text-align: center;

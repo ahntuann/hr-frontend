@@ -2,8 +2,11 @@ import React, { useMemo } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { getUserRoles } from "../utils/authUtils";
 import "./MainLayout.scss";
+import authService from "../services/authService"; // Import service logout
+import { LogOut, User, Bell } from "lucide-react";
 
 const MENU_ITEMS = [
+  { title: "Trang chủ", path: "/", roles: ["Admin", "Director"] },
   {
     title: "Quản lý Tài khoản",
     path: "/user-management",
@@ -15,7 +18,7 @@ const MENU_ITEMS = [
     roles: ["Admin", "Director"],
   },
   { title: "Chốt lương", path: "/payroll", roles: ["Director"] },
-  { title: "Trang chủ", path: "/", roles: ["Admin", "Director"] },
+
   {
     title: "Quản lý Nhân sự",
     path: "/employee-management",
@@ -42,6 +45,12 @@ const MENU_ITEMS = [
     roles: ["Admin", "Director", "Manager", "Employee"],
   },
 ];
+
+const handleLogout = () => {
+  if (window.confirm("Bạn có chắc chắn muốn đăng xuất?")) {
+    authService.logout();
+  }
+};
 
 const MainLayout = ({ children }) => {
   const location = useLocation();
@@ -75,6 +84,11 @@ const MainLayout = ({ children }) => {
             ))}
           </ul>
         </nav>
+        <div className="sidebar-footer">
+          <button className="logout-btn-sidebar" onClick={handleLogout}>
+            <LogOut size={18} /> <span>Đăng xuất</span>
+          </button>
+        </div>
       </aside>
 
       <div className="content-wrapper">
