@@ -8,6 +8,7 @@ import ContractManagement from "../pages/Contract/ContractManagement";
 import MyProfile from "../pages/Profile/MyProfile";
 import Attendance from "../pages/Attendance/Attendance";
 import PayrollManagement from "../pages/Payroll/PayrollManagement";
+import ApprovalCenter from "../pages/Director/ApprovalCenter";
 
 const routes = [
   {
@@ -64,6 +65,11 @@ const routes = [
   {
     path: "/payroll",
     component: PayrollManagement,
+    layout: MainLayout,
+  },
+  {
+    path: "/approvals",
+    component: ApprovalCenter,
     layout: MainLayout,
   },
 ];
